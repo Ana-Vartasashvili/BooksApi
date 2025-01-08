@@ -40,4 +40,25 @@ public class BooksController : BaseController
 
         return Ok(books.Select(book=>_mapper.Map<GetBookDto>(book)));
     }
+
+    /// <summary>
+    /// Gets book by Id
+    /// </summary>
+    /// <param name="id">Book id</param>
+    /// <returns>Returns book object</returns>
+    [HttpGet("{id:int}")]
+    [ProducesResponseType(typeof(GetBookDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult> GetBookById(int id)
+    {
+        var book = await _dbContext.Books.FindAsync(id);
+
+        if (book == null)
+        {
+            return NotFound();
+        }
+        
+        return Ok(_mapper.Map<GetBookDto>(book));
+    }
 }

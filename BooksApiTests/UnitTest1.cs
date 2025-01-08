@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 using BooksApi;
 using BooksApi.Books;
@@ -39,5 +40,23 @@ public class BasicTests : IClassFixture<CustomWebApplicationFactory>
        var books=await response.Content.ReadFromJsonAsync<IEnumerable<GetBookDto>>();
        
        Assert.Single(books);
+    }
+
+    [Fact]
+    public async Task GetBookById_ReturnsOkResult()
+    {
+        var client = _factory.CreateClient();
+        var response = await client.GetAsync("/books/1");
+        
+        response.EnsureSuccessStatusCode();
+    }
+
+    [Fact]
+    public async Task GetBookById_ReturnsNotFoundResult()
+    {
+        var client = _factory.CreateClient();
+        var response = await client.GetAsync("/books/999999");
+        
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 }

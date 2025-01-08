@@ -10,6 +10,13 @@
             </summary>
             <returns>Returns books in a JSON array</returns>
         </member>
+        <member name="M:BooksApi.Books.BooksController.GetBookById(System.Int32)">
+            <summary>
+            Gets book by Id
+            </summary>
+            <param name="id">Book id</param>
+            <returns>Returns book object</returns>
+        </member>
         <member name="T:BooksApi.Migrations.Init">
             <inheritdoc />
         </member>
