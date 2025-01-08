@@ -61,4 +61,21 @@ public class BooksController : BaseController
         
         return Ok(_mapper.Map<GetBookDto>(book));
     }
+
+    /// <summary>
+    /// Adds new book
+    /// </summary>
+    /// <returns>Returns created book object</returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(GetBookDto),StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> CreateBook(CreateBookDto book)
+    {
+        var newBook = _mapper.Map<Book>(book);
+        _dbContext.Add(newBook);
+        await _dbContext.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
+    }
 }
