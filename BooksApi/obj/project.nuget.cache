@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0Wv9K28irbE=",
+  "dgSpecHash": "RKwKBYY9sGM=",
   "success": true,
   "projectFilePath": "/Users/avartasahsvili/RiderProjects/BooksApi/BooksApi/BooksApi.csproj",
   "expectedPackageFiles": [
+    "/Users/avartasahsvili/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/Users/avartasahsvili/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/avartasahsvili/.nuget/packages/microsoft.aspnetcore.openapi/8.0.8/microsoft.aspnetcore.openapi.8.0.8.nupkg.sha512",
     "/Users/avartasahsvili/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
@@ -37,8 +38,6 @@
     "/Users/avartasahsvili/.nuget/packages/microsoft.extensions.primitives/9.0.0/microsoft.extensions.primitives.9.0.0.nupkg.sha512",
     "/Users/avartasahsvili/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/Users/avartasahsvili/.nuget/packages/mono.texttemplating/3.0.0/mono.texttemplating.3.0.0.nupkg.sha512",
-    "/Users/avartasahsvili/.nuget/packages/npgsql/9.0.2/npgsql.9.0.2.nupkg.sha512",
-    "/Users/avartasahsvili/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.2/npgsql.entityframeworkcore.postgresql.9.0.2.nupkg.sha512",
     "/Users/avartasahsvili/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.10/sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "/Users/avartasahsvili/.nuget/packages/sqlitepclraw.core/2.1.10/sqlitepclraw.core.2.1.10.nupkg.sha512",
     "/Users/avartasahsvili/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.10/sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",

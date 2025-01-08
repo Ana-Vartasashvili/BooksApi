@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BooksApi</name>
+    </assembly>
+    <members>
+        <member name="M:BooksApi.Books.BooksController.GetAllBooks(BooksApi.Books.GetAllBooksRequest)">
+            <summary>
+            Gets all of the books
+            </summary>
+            <returns>Returns books in a JSON array</returns>
+        </member>
+        <member name="T:BooksApi.Migrations.Init">
+            <inheritdoc />
+        </member>
+        <member name="M:BooksApi.Migrations.Init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BooksApi.Migrations.Init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BooksApi.Migrations.Init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
