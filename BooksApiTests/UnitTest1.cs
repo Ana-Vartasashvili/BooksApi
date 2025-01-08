@@ -28,4 +28,16 @@ public class BasicTests : IClassFixture<CustomWebApplicationFactory>
         
         Assert.NotEmpty(books);
     }
+
+    [Fact]
+    public async Task GetAllBooks_ReturnsFilteredBooks()
+    {
+        var client = _factory.CreateClient();
+        var response = await client.GetAsync("/books?Title=Book 1");
+        
+        response.EnsureSuccessStatusCode();
+       var books=await response.Content.ReadFromJsonAsync<IEnumerable<GetBookDto>>();
+       
+       Assert.Single(books);
+    }
 }
