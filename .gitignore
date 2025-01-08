@@ -65,6 +65,11 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 
+# SQLite database
+*.db
+*.sqlite
+*.sqlite3
+
 # Tye
 .tye/
 
