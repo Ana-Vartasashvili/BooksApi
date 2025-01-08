@@ -1,0 +1,87 @@
+# Ignore build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code settings
+.vscode/
+
+# Rider settings
+.idea/
+*.sln.iml
+
+# ASP.NET-specific files
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+appsettings.*.json
+appsettings.json
+
+# Log files
+*.log
+
+# Temporary files
+*.vspscc
+*.vssscc
+.vs/
+~$*
+*.tmp
+*.temp
+
+# Dependency folders
+node_modules/
+bower_components/
+
+# Publish artifacts
+*.publishsettings
+*.azurePubxml
+*.azurePubxml.user
+
+# Configuration cache
+*.pidb
+*.pidb.cache
+
+# NuGet
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Resharper and Rider files
+_ReSharper.*
+*.DotSettings.user
+
+# IDEs
+.DS_Store
+Thumbs.db
+
+# Database files
+*.mdf
+*.ldf
+*.db
+
+# Test results
+*.trx
+*.coverage
+TestResults/
+
+# JetBrains Rider or Resharper folder
+.idea/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Security
+secrets.json
+.env
+.env.*
+
