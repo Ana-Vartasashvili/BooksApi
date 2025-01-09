@@ -104,4 +104,28 @@ public class BooksController : BaseController
         
         return Ok(_mapper.Map<GetBookDto>(book));
     }
+
+    /// <summary>
+    /// Deletes book with a given Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpDelete("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> DeleteBook(int id)
+    {
+        var book = await _dbContext.Books.FindAsync(id);
+
+        if (book == null)
+        {
+            return NotFound();
+        }
+        
+        _dbContext.Books.Remove(book);
+        await _dbContext.SaveChangesAsync();
+        
+        return NoContent();
+    }
 }
