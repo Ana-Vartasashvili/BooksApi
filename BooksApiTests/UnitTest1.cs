@@ -157,4 +157,35 @@ public class BasicTests : IClassFixture<CustomWebApplicationFactory>
         
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
+
+    [Fact]
+    public async Task DeleteBook_ReturnsOkResult()
+    {
+        var client = _factory.CreateClient();
+        var testBook = new Book
+        {
+            Title = "Book",
+            Author = "Author",
+            ISBN = "123456789",
+        };
+        
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        db.Books.Add(testBook);
+        await db.SaveChangesAsync();
+        
+        var response = await client.DeleteAsync($"/books/{testBook.Id}");
+        
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task DeleteBook_ReturnsNotFoundResult()
+    {
+        var client = _factory.CreateClient();
+        
+        var response = await client.DeleteAsync("/books/999999");
+        
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
 }
