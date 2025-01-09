@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BooksApi.Books;
 
-public class CreateBookDto
+public class UpdateBookDto
 {
     public string? Title { get; set; }
     public string? Author { get; set; }
@@ -14,21 +14,22 @@ public class CreateBookDto
     public decimal? Rating { get; set; }
 }
 
-public class CreateBookDtoValidator : AbstractValidator<CreateBookDto>
+public class UpdateBookDtoValidator : AbstractValidator<UpdateBookDto>
 {
     private readonly AppDbContext _dbContext;
 
-    public CreateBookDtoValidator(AppDbContext dbContext)
+    public UpdateBookDtoValidator(AppDbContext context)
     {
-        _dbContext = dbContext;
-        
-        RuleFor(x=>x.Author).NotEmpty();
-        RuleFor(x=>x.ISBN).NotEmpty();
-        RuleFor(x => x.Title).NotEmpty()
-            .MustAsync(NotDuplicate)
-            .WithMessage("Book with this title already exists");
-    }
+        _dbContext = context;
 
+        RuleFor(x => x.Author).NotEmpty().When(x => x.Author != null);
+        RuleFor(x => x.ISBN).NotEmpty().When(x => x.ISBN != null);
+        RuleFor(x => x.Title)
+            .NotEmpty()
+            .When(x => x.Title != null)
+            .MustAsync(NotDuplicate).WithMessage("Book with this title already exists");
+    }
+    
     private async Task<bool> NotDuplicate(string? title, CancellationToken cancellationToken)
     {
         var bookWithSameTitle = await _dbContext.Books.SingleOrDefaultAsync(b=>b.Title==title, cancellationToken);

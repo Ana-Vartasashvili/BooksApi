@@ -9,5 +9,6 @@ public class AutoMapperProfile : Profile
     {
         CreateMap<Book, GetBookDto>();
         CreateMap<CreateBookDto, Book>();
+        CreateMap<UpdateBookDto, Book>();
     }
 }

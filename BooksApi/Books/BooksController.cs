@@ -78,4 +78,30 @@ public class BooksController : BaseController
 
         return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
     }
+
+    /// <summary>
+    /// Updates existing book
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="updateBookDto"></param>
+    /// <returns>Returns updated book</returns>
+    [HttpPut("{id:int}")]
+    [ProducesResponseType(typeof(GetBookDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UpdateBook(int id, [FromBody]UpdateBookDto updateBookDto)
+    {
+        var book = await _dbContext.Books.FindAsync(id);
+
+        if (book == null)
+        {
+            return NotFound();
+        }
+        
+        _mapper.Map(updateBookDto, book);
+        await _dbContext.SaveChangesAsync();
+        
+        return Ok(_mapper.Map<GetBookDto>(book));
+    }
 }
