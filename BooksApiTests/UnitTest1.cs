@@ -3,6 +3,7 @@ using System.Net.Http.Json;
 using BooksApi;
 using BooksApi.Books;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BooksApiTests;
 
@@ -119,5 +120,41 @@ public class BasicTests : IClassFixture<CustomWebApplicationFactory>
         Assert.NotNull(problemDetails);
         Assert.Contains("Title", problemDetails.Errors.Keys);
         Assert.Contains("Book with this title already exists", problemDetails.Errors["Title"]);
+    }
+
+    [Fact]
+    public async Task UpdateBook_ReturnsOkResult()
+    {
+        var client = _factory.CreateClient();
+        var updatedBook = new Book
+        {
+            Title = "Book updated",
+            Author = "Author updated",
+            ISBN = "123456789",
+        };
+        
+        var response = await client.PutAsJsonAsync("/books/1", updatedBook);
+        
+        response.EnsureSuccessStatusCode();
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var employee = await db.Books.FindAsync(1);
+        Assert.Equal("Book updated", employee.Title);
+    }
+
+    [Fact]
+    public async Task UpdateBook_ReturnsNotFoundResult()
+    {
+        var client = _factory.CreateClient();
+        var updatedBook = new Book
+        {
+            Title = "Book updated",
+            Author = "Author updated",
+            ISBN = "123456789",
+        };
+        
+        var response = await client.PutAsJsonAsync("/books/999999", updatedBook);
+        
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 }
